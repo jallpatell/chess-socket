@@ -1,0 +1,24 @@
+{
+  "name": "chess-socket",
+  "version": "1.0.0",
+  "description": "making a real-time app to play chess using node.js, socket.js and chess.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jallpatell/chess-socket.git"
+  },
+  "keywords": [
+    "chess",
+    "socket",
+    "nodejs"
+  ],
+  "author": "Jal Patel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jallpatell/chess-socket/issues"
+  },
+  "homepage": "https://github.com/jallpatell/chess-socket#readme"
+}
