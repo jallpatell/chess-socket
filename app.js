@@ -1,22 +1,37 @@
 const express = require("express");
 const socket  = require("socket.io");
 const http = require("http");
-const { chess } = require("chess.js");
+const { Chess } = require("chess.js");
 const path = require("path");
 
 const app = express();
 const server = http.createServer(app);
 const io = socket(server);
 
-const chess = new chess();
+const game = new Chess();
 let players = {};
-currentPlayer = "W";
+let currentPlayer = "W";
 
-app.set("view engine","ejs")
+app.set("view engine","ejs");
 app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", (req, res) => {
     res.render("index", {title: "chess game "});
+});
+
+io.on("connection", function(uniquesocket) {
+    console.log("connected");
+
+    uniquesocket.on("literal", function() {
+        console.log("recived literal");
+
+        // io.emit - send data to all 
+
+        io.emit("literal 2ish");
+    })
+    uniquesocket.on("disconnect", function(){
+        console.log("disconnected");
+    })
 });
 
 server.listen(3000, function() {
