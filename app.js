@@ -22,16 +22,17 @@ app.get("/", (req, res) => {
 io.on("connection", function(uniquesocket) {
     console.log("connected");
 
-    uniquesocket.on("literal", function() {
-        console.log("recived literal");
-
-        // io.emit - send data to all 
-
-        io.emit("literal 2ish");
-    })
-    uniquesocket.on("disconnect", function(){
-        console.log("disconnected");
-    })
+    if(!players.white){
+        players.white = uniquesocket.id;
+        uniquesocket.emit("playerRole", "w");
+    }
+    else if(!players.black){
+        players.black = uniquesocket.id;
+        uniquesocket.emit("playerRole", "b");
+    }
+    else{
+        uniquesocket.emit("spectatorRole");
+    }
 });
 
 server.listen(3000, function() {
