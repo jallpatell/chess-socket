@@ -33,6 +33,14 @@ io.on("connection", function(uniquesocket) {
     else{
         uniquesocket.emit("spectatorRole");
     }
+
+    uniquesocket.on("disconnet", function() {
+        if(uniquesocket.id === players.white){
+            delete players.white;
+        }else if(uniquesocket.id === players.black){
+            delete players.black;
+        }
+    })
 });
 
 server.listen(3000, function() {
