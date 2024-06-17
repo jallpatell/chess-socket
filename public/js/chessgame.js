@@ -1,6 +1,22 @@
 const socket = io();
-socket.emit("literal") 
-// socket.on -  recive from backend
-socket.on("literal 2ish", function(){
-    console.log("recived literal 2is");
-})
+const chess = new Chess();
+const boardElement = document.querySelector("#chessboard");
+
+let draggedPiece = null;
+let sourceSquare = null;
+let playerRole = null;
+
+const renderBoard = () => {
+    const board = chess.board();
+    boardElement.innerHTML = "";
+    board.forEach((row, rowindex) => {
+        row.forEach((squre, squareindex) => {
+            const squareElement = document.createElement("div");
+            squareElement.classList.add("square",
+                (rowindex + squareindex)%2 === 0 ? "light" : "dark"
+            );
+        })
+    })
+};
+const handleMove = () => {};
+const getPieceUnicode = () => {};

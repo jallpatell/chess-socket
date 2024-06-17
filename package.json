@@ -2,7 +2,7 @@
   "name": "chess-socket",
   "version": "1.0.0",
   "description": "making a real-time app to play chess using node.js, socket.js and chess.js",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
