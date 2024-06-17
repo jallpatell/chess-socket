@@ -43,6 +43,22 @@ io.on("connection", function(uniquesocket) {
     })
 });
 
+uniquesocket.on("move", (move) => {
+    try{
+        if(Chess.turn() === "w" && uniquesocket.id !== players.white) return;
+        if(Chess.turn() === "b" && uniquesocke.id !== players.black) return;
+
+        const result = chess.move(move);
+        if(result){
+            currentPlayer = chess.turn();
+            io.emit("move", move)
+            io.emit("boardstate", )
+        }
+    }catch(err){
+
+    }
+})
+
 server.listen(3000, function() {
     console.log("listening on port:3000")
 });
