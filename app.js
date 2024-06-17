@@ -16,7 +16,7 @@ app.set("view engine","ejs");
 app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", (req, res) => {
-    res.render("index", {title: "chess game "});
+    res.render("index", {title: "chess game"});
 });
 
 io.on("connection", function(uniquesocket) {
@@ -46,7 +46,7 @@ io.on("connection", function(uniquesocket) {
 uniquesocket.on("move", (move) => {
     try{
         if(Chess.turn() === "w" && uniquesocket.id !== players.white) return;
-        if(Chess.turn() === "b" && uniquesocke.id !== players.black) return;
+        if(Chess.turn() === "b" && uniquesocket.id !== players.black) return;
 
         const result = chess.move(move);
         if(result){
