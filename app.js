@@ -34,7 +34,7 @@ io.on("connection", function(uniquesocket) {
         uniquesocket.emit("spectatorRole");
     }
 
-    uniquesocket.on("disconnet", function() {
+    uniquesocket.on("git t", function() {
         if(uniquesocket.id === players.white){
             delete players.white;
         }else if(uniquesocket.id === players.black){
