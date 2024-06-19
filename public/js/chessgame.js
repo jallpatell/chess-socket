@@ -1,6 +1,6 @@
 const socket = io();
 const chess = new Chess();
-const boardElement = document.querySelector("#chessboard");
+const   = document.querySelector("#chessboard");
 
 let draggedPiece = null;
 let sourceSquare = null;
@@ -21,7 +21,35 @@ const renderBoard = () => {
             if(square) {
                 const pieceElement = document.createElement("div");
                 pieceElement.classList.add("piece", square.color === 'w' ? "white" : "black")
-            }
+                pieceElement.innnerText = "";
+                pieceElement.draggable = playerRole = square.color;
+                pieceElement.addEventListner("dragstart", () => {
+                    if(pieceElement.draggable){
+                        draggedPiece = pieceElement;
+                        squareSource = {row: rowindex, col: squareindex};
+                        e.dataTransfer.setData("text/plain", "");
+                    }
+                });
+                pieceElement.addEventListner("draggend", (e) => {
+                    draggedPiece = null;
+                    sourceSquare = null;
+                })
+                source.appendChild(pieceElement);
+            };
+            squareElement.addEventListener("dragover", function(e){
+                e.preventDefault();
+            })
+            squareElement.addEventListener("drop", function(e) {
+                e.preventDefault();
+                if(draggedPiece){
+                    const targetSource = {
+                        row: parseInt(squareElement.dataset.row),
+                        col: parseInt(squareElement.dataset.col),
+                    };
+                    handleMove(sourceSquare, targetSource);
+                }
+            })
+            
         })
     })
 };
