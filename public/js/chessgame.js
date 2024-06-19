@@ -21,7 +21,7 @@ const renderBoard = () => {
             if(square) {
                 const pieceElement = document.createElement("div");
                 pieceElement.classList.add("piece", square.color === 'w' ? "white" : "black")
-                pieceElement.innnerText = "";
+                pieceElement.innnerText = getPieceUnicode(square);
                 pieceElement.draggable = playerRole = square.color;
                 pieceElement.addEventListner("dragstart", () => {
                     if(pieceElement.draggable){
@@ -50,8 +50,25 @@ const renderBoard = () => {
                 }
             })
             
-        })
+        });
+        boardElement.appendChild(squareElement);
     })
+    
 };
-const handleMove = () => {};
-const getPieceUnicode = () => {};
+const handleMove = () => {
+    const move = {
+        from: ,
+        to: ,
+        promotion: 'q',
+    }
+};
+const getPieceUnicode = (piece) => {
+    const pieceMap = {
+        'p': '♙', 'r': '♖', 'n': '♘', 'b': '♗', 'q': '♕', 'k': '♔',
+        'P': '♟', 'R': '♜', 'N': '♞', 'B': '♝', 'Q': '♛', 'K': '♚'
+    };
+    return unicodePieces[piece.type] || "";
+};
+
+
+renderBoard();
