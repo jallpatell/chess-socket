@@ -1,2 +1,2 @@
 # chess-socket
-making a real-time app to play chess using node.js, socket.js and chess.js 
+Making a real-time chess game using node.js, socket.js and a library named chess.js.
