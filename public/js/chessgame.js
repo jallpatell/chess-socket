@@ -1,6 +1,6 @@
 const socket = io();
 const chess = new Chess();
-const   = document.querySelector("#chessboard");
+const  boardElement = document.querySelector("#chessboard");
 
 let draggedPiece = null;
 let sourceSquare = null;
@@ -57,10 +57,11 @@ const renderBoard = () => {
 };
 const handleMove = () => {
     const move = {
-        from: ,
-        to: ,
+        from: `${String.fromCharCode(97+source.col)}${8-source.row}`,
+        to:`${String.fromCharCode(97+target.col)}${8-target.row}` ,
         promotion: 'q',
     }
+    socket.emit("move", move);
 };
 const getPieceUnicode = (piece) => {
     const pieceMap = {
@@ -70,5 +71,20 @@ const getPieceUnicode = (piece) => {
     return unicodePieces[piece.type] || "";
 };
 
-
+socket.on("playerRole", function(player){
+    playerRole = role;
+    renderBoard();
+})
+socket.on("spectatorRole", function(){
+    playerRole = null;
+    renderBoard();
+})
+socket.on("boardState", function () {
+    chess.load(fen);
+    renderBoard();
+})
+socket.on("move", function () {
+    chess.load(move);
+    renderBoard();
+})
 renderBoard();
